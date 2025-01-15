@@ -14,8 +14,13 @@ export default class UserService {
     return this.userRepository.find();
   }
 
+  async findOne(id: number): Promise<User | null> {
+    return this.userRepository.findOneBy({ id });
+  }
+
   async create(userData: Partial<User>): Promise<User> {
     const user = this.userRepository.create(userData);
+    console.log('user created', user);
     return this.userRepository.save(user);
   }
 }
